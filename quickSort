@@ -1,0 +1,56 @@
+public class Solution {
+	public int[] quickSort(int[] array) {
+if (array == null || array.length <= 1) {
+return array;
+}
+quickSort(array,0,array.length - 1);
+return array;
+}
+public void quickSort(int[] array,int left,int right) {
+  if (left >= right) {
+    return;
+  }
+	int i = left + (int)((right - left + 1) * Math.random());
+	int rightBound = right;
+	int leftBound = left;
+  int target = array[i];
+  swap(array,i,right);
+  rightBound--;
+	while (leftBound <= rightBound) {
+// 	if (array[left] >= target && array[right] <= target) {
+// swap(array[left],array[right]);
+// left++;
+// right--;
+// }
+// else if (array[left] >= target && array[right] >= target) {
+// right--;
+// }
+// else if (array[left] < target && array[right] >= target) {
+// left++;
+// right--;
+// }
+// else {
+// left++;
+// }
+  if (array[leftBound] < target) {
+    leftBound++;
+  }
+  else if (array[rightBound] > target){
+    rightBound--;
+  }
+  else {
+    swap(array,leftBound,rightBound);
+    leftBound++;
+    rightBound--;
+  }
+}
+swap(array,leftBound,right);
+quickSort(array,left,leftBound - 1);
+quickSort(array,leftBound + 1,right);
+}
+public void swap(int[] array, int a, int b) {
+int temp = array[a];
+array[a] = array[b];
+array[b] = temp;
+}
+}
