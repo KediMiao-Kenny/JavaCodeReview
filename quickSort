@@ -1,3 +1,5 @@
+1. result:
+
 public class Solution {
 	public int[] quickSort(int[] array) {
 if (array == null || array.length <= 1) {
@@ -54,3 +56,55 @@ array[a] = array[b];
 array[b] = temp;
 }
 }
+
+
+2.
+** it is ok to use the same name for two methods in java, it is called 'method overload', as long as the parameters aren't the same.
+eg.
+
+public class Foo {
+        ...
+        public int getInt(String s1) {
+            // get and return an int based on a single string.
+        }
+
+        public int getInt(String s1, int dflt) {
+            // get and return an int based on a string and an integer
+        }
+    }
+    
+    
+    
+    
+ 3. time complexity: 
+ Worst case: n + (n - 1) + (n - 2)+ .... =O(n^2)
+ 
+ average = O(nlogn) 
+ XXXXXXXXXXXXXXXXXXX      n * logn
+ XXXXXXXXXX
+ XXXXX
+ XX
+ X
+ 
+ 
+ Space complexity: O(logn)
+ worst case: O(n)
+ 
+ 
+ 4. （int）一个数为默认情况，默认情况向0取整；floor向负无穷取整；ceil向正无穷取整；round四舍五入取整
+ Math.random()可以随机出最小值，但无法随机出最大值
+ 
+ 
+ 5. recursive的真的不能忘结束条件！！！！！！
+ recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！
+ recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！
+ recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！recursive的真的不能忘结束条件！！！！！！
+ 
+ 6.必须要注意pivot返回的时候位置已经变了，所以quickSortMethod里面必须return一个 left pointer（leftIndex）才行，不然就是刻舟求剑；
+ pointer必须要在method里面重新定义，不能直接用left、right当pointer，后面swap就没办法弄。
+ 
+ 7. array space complexity is O(1)
+ 
+ 
+ 
+ 
