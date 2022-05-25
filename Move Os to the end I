@@ -1,1 +1,36 @@
+public class Solution {
+	public int[] moveZero(int[] array) {
+if (array.length <= 1) {
+return array;
+}
+moveZero(array,0,array.length - 1);
+return array;
 
+}
+public void moveZero(int[] array, int left, int right) {
+		while (left <= right) {
+		if (array[right] == 0){
+		right--;
+}
+else if (array[left] == 0) {
+		swap(array,left,right);
+		left++;
+		right--;
+}
+else {
+	left++;
+}
+
+}
+}
+public void swap(int[]array, int a, int b) {
+	int temp = array[a];
+	array[a] = array[b];
+	array[b] = temp;
+}
+}
+
+
+
+非常类似于quickSort，因为也是两个指针三个区域，但其实只用关注左边，所以相对简单许多，也不用recursion，但有一个小trick就是必须保证右边不能是0，所以要先看右边，是零向左走；
+再看左边，是零swap；else即左边不是零，i++；
