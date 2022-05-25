@@ -1,0 +1,41 @@
+public class Solution{
+  public int[] rainbowSort(int[] array) {
+    if (array == null || array.length == 0) {
+      return array;
+    }
+    int i = 0;
+    int j = 0;
+    int k = array.length - 1;
+    while(j <= k) {
+      if(array[j] == -1) {
+        swap(array, i, j);
+        i++;
+        j++;
+      } else if (array[j] == 0) {
+        j++;
+      }else {
+        swap(array,j,k);
+        k--;
+      }
+    }
+    return array;
+  }
+  private void swap(int[] array, int left, int right) {
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+  }
+}
+
+
+1.不要忘记return array；这是低级失误
+
+2. public method和private method是并列关系，都包含在class里
+
+3.本题最tricky的地方在于k--，这里一定不能j++，因为swap后是不能确定j所对应的数是什么，必须再scan一次；而左边，无论哪种情况，最后总会形成i所对应的是第一个b，所以可以i++ & j++
+
+
+
+
+
+
