@@ -1,0 +1,23 @@
+public class Solution {
+	public ListNode reverse(ListNode head) {
+	ListNode pre = null;
+	while (head != null) {
+	ListNode next = head.next;
+//head.next.next = head;
+	head.next = pre;
+	pre = head;
+head = next;
+}
+return pre;
+}
+}
+
+
+
+2.linked list前后连哪些一定要注意，
+
+3.      prev = head;
+      head = next;
+      这个意思是把prev这个reference连接到head这里，除了名字以外，value + next listnode全部一样
+      
+所以这个方法的核心就是reverse一次，向右移一格。
