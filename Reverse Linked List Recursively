@@ -1,0 +1,15 @@
+public class Solution {
+	public ListNode reverse(ListNode head) {
+	if (head == null || head.next == null) {
+	return head;
+}
+ListNode newHead = reverse(head.next);
+head.next.next = head;
+head.next = null;
+return newHead;
+}
+}
+
+
+
+算法非常简单，就几行，但理解难度非常大，我甚至只能用例子去推才发现他的精妙之处，但如何自己灵活运用，如何举一反三还做不到。
