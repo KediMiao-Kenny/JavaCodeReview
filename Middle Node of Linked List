@@ -1,0 +1,19 @@
+
+public class Solution {
+	public ListNode middleNode(ListNode head) {
+if (head == null || head.next == null) {
+	return head;
+}
+ListNode fast = head;
+ListNode slow = head;
+while(fast.next != null && fast.next.next != null) {
+slow = slow.next;
+fast = fast.next.next;
+}
+return slow;	
+}
+}
+
+
+快慢指针找中点是非常智慧的做法，需要注意的细节是 一定要保证dereference linked list 的时候不能为null，所以第一件事保证head不是null 第二步查head.next not null, then we can 
+find out if the head.next.next is not null, can not be backward.
