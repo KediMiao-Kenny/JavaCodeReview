@@ -1,0 +1,26 @@
+public class Solution {
+  public ListNode insert(ListNode head, int target) {
+    ListNode newTarget = new ListNode(target);
+    if (head == null) {
+      return newTarget;
+    }else if (head.value > target) {
+      newTarget.next = head;
+      return newTarget;
+    }
+    ListNode left = head;
+    while (left.value < target && left.next != null && left.next.value < target) {
+      left = left.next;
+    }
+    ListNode temp = left.next;
+    left.next = newTarget;
+    newTarget.next = temp;
+    return head;
+  }
+}
+
+
+
+注意的点：
+1. 新建ListNode格式不能忘 ListNode xxx = new ListNode();
+2. ListNode and int share the name pool in one method, so never duplicate the variable name
+3. always remember dereference can not be null, so 'left.next != null' then check value is very important.
