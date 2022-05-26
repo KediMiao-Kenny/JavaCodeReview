@@ -1,0 +1,37 @@
+public class Solution {
+  public int closest(int[] array, int target) {
+    if (array == null || array.length == 0) {
+      return -1;
+    }
+    int left = 0;
+    int right = array.length - 1;
+    while (left < right - 1) {
+      int mid = left + (right - left)/2;
+      if (array[mid] == target) {
+        return mid;
+      } else if (array[mid] < target) {
+        left = mid;
+      } else {
+        right = mid;
+      }
+    }
+    //post-prcessing
+    if (Math.abs(array[left] - target) >= Math.abs(array[right] - target)) {
+      return right;
+    } else {
+      return left;
+    }
+  }
+}
+
+// left 0 4
+// right 6 6
+// mid 3   5
+
+
+
+2. 两个需要记住的小知识点，一是绝对值 Math.abs(),二是判断句 XXXXXX ? yes : no;
+
+Math.abs(array[left] - target) >= Math.abs(array[right] - target) ?  right : left;
+
+3. left < right - 1 这一块注意一下，不要形成死循环，及时跳出loop
