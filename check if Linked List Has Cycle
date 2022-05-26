@@ -1,0 +1,40 @@
+public class Solution {
+	public boolean hasCycle(ListNode head) {
+		if (head == null || head.next == null) {
+	return false;
+}
+	ListNode fast = head;
+	ListNode slow = head;
+	while (fast != null && fast.next != null) {
+	slow = slow.next;
+	fast = fast.next.next;
+	if (slow == fast) {
+	return true;
+}
+}
+return false;
+}
+}
+
+
+
+public class Solution {
+  public boolean hasCycle(ListNode head) {
+    if (head == null || head.next == null) {
+      return false;
+    }
+    ListNode slow = head;
+    ListNode fast = head;
+    while (fast.next != null && fast.next.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if (slow.value == fast.value) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+two ways no difference, fast.next & fast.next.next is equal to fast & fast.next in this case
+and also, you can compare ListNode to another ListNode as well as their value.
