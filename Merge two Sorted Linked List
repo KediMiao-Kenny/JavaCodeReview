@@ -1,0 +1,78 @@
+public class Solution {
+	public ListNode merge(ListNode one, ListNode two) {
+	if (one == null && two == null) {
+	return null;
+} else if (one == null && two.next == null) {
+	return two;
+} else if (two == null && one.next == null) {
+	return one;
+}
+ListNode result = new ListNode(0);
+ListNode dum = result;
+	while (one != null && two != null) {
+	if (one.value <= two.value) {
+	result.next = one;
+	result = result.next;
+	one = one.next;
+}
+else {
+	result.next = two;
+	result = result.next;
+	two = two.next;
+}
+}
+if (one == null) {
+	result.next = two;
+} else {
+	result.next = one;
+}
+return dum.next;
+}
+}
+
+
+
+05/27/2022 
+
+public class Solution {
+  public ListNode merge(ListNode head, ListNode secHead) {
+    if ( head == null) {
+      return secHead;
+    }
+    if (secHead == null) {
+      return head;
+    }
+
+    ListNode dummy = new ListNode(0);
+    ListNode pointer = dummy;
+
+    while (head != null || secHead != null) {
+      if (head.value <= secHead.value) {
+        if(head.next == null) {
+          pointer.next = head;
+          head.next = secHead;
+          break;
+        } 
+        pointer.next = head;
+        pointer = pointer.next;
+        head = head.next;
+      }else {
+        if(secHead.next == null) {
+          pointer.next = secHead;
+          secHead.next = head;
+          break;
+        } 
+        pointer.next = secHead;
+        pointer = pointer.next;
+        secHead = secHead.next;
+      }
+    }
+    return dummy.next;
+  }
+}
+
+没想到一次写对，这倒是惊喜，但还是没有长进 写的不好看 老太婆的裹脚布
+需要注意的是 
+1. 在while loop里不可以使用return，只能用break；
+2. 再熟悉 ListNode x = new ListNode(0);
+
