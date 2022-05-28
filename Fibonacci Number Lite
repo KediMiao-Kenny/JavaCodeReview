@@ -1,0 +1,33 @@
+public class Solution {
+  public long fibonacci(int k) {
+    if (k <= 0) {
+      return 0;
+    }
+    return fibo(k);
+  }
+  private long fibo(int n) {
+    if (n == 0) {
+      return 0;
+    } 
+    if (n == 1) {
+      return 1;
+    }
+    return fibo(n - 1) + fibo(n - 2);
+  }
+}
+
+我写的虽然没问题，但可以看出对recursive还是不很熟悉，所以代码有冗余
+
+
+public class Solution {
+  public int fibonacci(int k) {
+    if (k <= 0) {
+      return 0;
+    }
+    if(k == 1) {
+      return 1;
+    }
+    return fibonacci(k - 1) + fibonacci(k - 2);
+  }
+}
+
