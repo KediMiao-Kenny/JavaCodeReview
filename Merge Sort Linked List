@@ -1,0 +1,64 @@
+public class Solution {
+  public ListNode mergeSort(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+
+    int mid = (length(head) - 1)/2;
+    ListNode middle = findMid(head,mid);
+    ListNode newHead = mergeSort(head);
+    ListNode newMiddle = mergeSort(middle);
+    ListNode result = merge(newHead, newMiddle);
+    return result;
+  }
+
+  private int length(ListNode head) {
+    int length = 0;
+    while (head != null) {
+      length++;
+      head = head.next;
+    }
+    return length;
+  }
+
+  private ListNode findMid(ListNode head, int mid) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    for (int i = 0; i < mid; i++) {
+      head = head.next;
+    }
+    ListNode middle = head.next;
+    head.next = null;
+    return middle;
+  }
+
+  private ListNode merge(ListNode left, ListNode right) {
+    ListNode dummy = new ListNode(0);
+    ListNode cur = dummy;
+    while(left != null && right != null) {
+      if (left.value <= right.value) {
+        cur.next = left;
+        left = left.next;
+      } else {
+        cur.next = right;
+        right = right.next;
+      }
+      cur = cur.next;
+      cur.next = null;
+    }
+    if (left == null) {
+      cur.next = right;
+    } 
+    if (right == null) {
+      cur.next = left;
+    } 
+    return dummy.next;
+  }
+
+}
+
+  这是把三个题目结合在一起，主要注意的就是细节和逻辑的连贯性，
+  
+  
+     ListNode result = merge(newHead, newMiddle);我在这一行开始就写错了，需要小心。
