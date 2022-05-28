@@ -1,0 +1,88 @@
+public class Solution {
+  public ListNode reorder(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode mid = findMid(head);
+    ListNode sec = mid.next;
+    mid.next = null;
+    ListNode end = reverse(sec);
+    ListNode result = merge(head,end);
+    return result;
+  }
+
+  private ListNode findMid(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+    while (fast.next != null && fast.next.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    return slow;
+  }
+
+  private ListNode reverse(ListNode head) {
+    ListNode prev = null;
+    while (head != null) {
+      ListNode next = head.next;
+      head.next = prev;
+      prev = head;
+      head = next;
+    }
+    return prev;
+  }
+
+  private ListNode merge(ListNode head, ListNode end) {
+    ListNode dummy = new ListNode(0);
+    ListNode cur = dummy;
+    while (head != null && end != null) { 
+      cur.next = head;
+      head = head.next;
+      cur.next.next = end;
+      end = end.next;
+      cur = cur.next.next;
+    }
+    if(head == null) {
+      cur.next = end;
+    }
+    if(end == null) {
+      cur.next = head;
+    }
+    return dummy.next;
+  }
+}
+
+
+
+这是一道难题，有许多需要注意的地方，这道题主要分两个方面，一个是coding需要注意的细节，一个是在思考如何coding的时候的思路应该如何一步步来；
+要先搞清楚问题，想出方法，然后想一般情况，写好后开始分析corner case，最后根据解决corner case的难易度，选择是更改method 还是在最开始考虑corner case
+
+其次是coding细节：
+
+1. while (head != null && end != null) { 
+      cur.next = head;
+      head = head.next;
+      cur.next.next = end;
+      end = end.next;
+      cur = cur.next.next;
+    }
+    
+    这是最重要的，一定不要break list，这个顺序不能调换，仔细想想为什么，因为顺序一旦一换，就把list弄乱了
+    
+2. 
+   if(head == null) {
+      cur.next = end;
+    }
+    if(end == null) {
+      cur.next = head;
+    }
+    这是不能缺少的，因为最后那一个会缺少
+    
+ 3. 
+ ListNode sec = mid.next;
+    mid.next = null;
+    ListNode end = reverse(sec);
+    
+    这也是tricky的部分，一定要注意将前后两个list分开，所以找mid的时候要找前一个才行。
+
+
