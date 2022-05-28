@@ -1,0 +1,31 @@
+public class Solution {
+  public ListNode partition(ListNode head, int target) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode small = new ListNode(0);
+    ListNode one = small;
+    ListNode large = new ListNode(0);
+    ListNode two = large;
+    while (head != null) {
+      if (head.value >= target) {
+        large.next = head;
+        head = head.next;
+        large.next.next = null;
+        large = large.next;
+      } else {
+        small.next = head;
+        head = head.next;
+        small.next.next = null;
+        small = small.next;
+      }
+    }
+    small.next = two.next;
+    return one.next;
+  }
+}
+
+
+我这个虽然和标准答案不一样，但我以为更通俗易懂，time complexity也一样；最主要就是一点，不能不该断的时候断，该断的时候乱连。
+   
+  
