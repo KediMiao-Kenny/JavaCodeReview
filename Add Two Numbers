@@ -1,0 +1,70 @@
+public class Solution {
+  public ListNode addTwoNumbers(ListNode one, ListNode two) {
+    if (one == null) {
+      return two;
+    }
+    if(two == null) {
+      return one;
+    }
+    ListNode dummy = new ListNode(0);
+    ListNode result = dummy;
+    while(one != null && two != null) {
+      int value = one.value + two.value;
+      one = one.next;
+      two = two.next;
+      result.next = new ListNode(value);
+      result = result.next;
+    }
+    if (one == null) {
+      result.next = two;
+    }
+    if (two == null) {
+      result.next = one;
+    }
+    ListNode cur = dummy.next;
+    while (cur != null) {
+      if (cur.value < 10) {
+        cur = cur.next;
+      }else {
+        int val = cur.value - 10;
+        cur.value = val;
+        if (cur.next == null) {
+          cur.next = new ListNode(1);
+        }else{
+          cur.next.value = cur.next.value + 1;
+        }
+        cur = cur.next;
+      }
+    }
+    return dummy.next;
+  }
+}
+
+
+
+我这个方法虽然可以运行，但实在不够好看，太过冗长，还有就是要注意 不能直接用 list.next.value = 5这样定义linked list下一个节点，要这样
+list.next = new ListNode(5);
+
+public class Solution {
+  public ListNode addTwoNumbers(ListNode one, ListNode two) {
+    ListNode dummy = new ListNode(0);
+    ListNode cur = dummy;
+    int val = 0;
+    while(one != null || two != null || val != 0) {
+      if(one != null) {
+        val = val + one.value;
+        one = one.next;
+      }
+      if (two != null) {
+        val += two.value;
+        two = two.next;
+      }
+      cur.next = new ListNode(val%10);
+      val = val/10;
+      cur = cur.next;
+    }
+    return dummy.next;
+  }
+}
+
+
