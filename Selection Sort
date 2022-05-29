@@ -1,0 +1,58 @@
+public class Solution {
+  public int[] solve(int[] array) {
+    if (array == null || array.length <= 1) {
+      return array;
+    }
+    for (int i = 0; i < array.length - 1; i++) {
+      int globalMin = i;
+      for (int j = i + 1; j <= array.length - 1; j++) {
+       if (array[j] < array[globalMin]) {
+         globalMin = j;
+       } 
+      }
+      swap(array,i,globalMin);
+    }
+    return array;
+  }
+  public void swap(int[] array,int a, int b) {
+    int temp = array[a];
+    array[a] = array[b];
+    array[b] = temp;
+  }
+}
+
+
+
+public class Solution {
+  public int[] solve(int[] array) {
+    if(array == null || array.length == 0) {
+      return array;
+    }
+    for(int i = 0; i < array.length - 1; i++) {
+      int globalmin = array[i];
+      int cur = i;
+      int min = i;
+      while(cur <= array.length - 1) {
+        if(array[cur] < globalmin) {
+          globalmin = array[cur];
+          min = cur;
+          cur++;
+        } else {
+          cur++;
+        }
+      }
+      swap(array,i,min);
+    }
+    return array;
+  }
+
+  private void swap(int[] array, int left, int right) {
+    int temp = array[left];
+    array[left] = array[right];
+    array[right] = temp;
+  }
+}
+
+
+
+新方法还是不漂亮，用两个for loop解决是最好的。
