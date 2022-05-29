@@ -1,0 +1,53 @@
+public class Solution {
+  public boolean isPalindrome(ListNode head) {
+    if(head == null || head.next == null) {
+      return true;
+    }
+    ListNode mid = findMid(head);
+    ListNode middle = mid.next;
+    mid.next = null;
+    ListNode two = reverse(middle);
+    while (two != null) {
+      if (two.value != head.value) {
+        return false;
+      }else {
+        two = two.next;
+        head = head.next;
+      }
+    }
+    return true;
+  }
+
+  private ListNode findMid(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+    while(fast.next != null && fast.next.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    return slow;
+  }
+
+  private ListNode reverse(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode prev = null;
+    while (head != null) {
+      ListNode next = head.next;
+      head.next = prev;
+      prev = head;
+      head = next;
+    }
+    return prev;
+  }
+
+}
+
+
+
+  这道题也是多个小题目综合起来，唯一注意的就是关注corner case，已经while loop以 后半段linked list为标准，因为前半段或许会多一个数字。
+
+
+
+
