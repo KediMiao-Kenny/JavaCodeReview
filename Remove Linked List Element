@@ -1,0 +1,31 @@
+public class Solution {
+  public ListNode removeElements(ListNode head, int target) {
+    if(head == null) {
+      return head;
+    }
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode prev = dummy;
+    ListNode cur = head;
+    while(cur != null) {
+      if (cur.value != target) {
+        cur = cur.next;
+        prev = prev.next;
+      } else {
+        ListNode next = cur.next;
+        prev.next = next;
+        cur = next;
+      }
+    }
+    return dummy.next;
+  }
+}
+
+
+这道题虽然是easy但也有很多需要注意的地方，
+1.  if(head == null) {
+      return head;
+    }
+    判断语句不能加 head.next == null否则会rule out只有一个variable的情况
+    
+2. 加一个dummy就会轻松很多
