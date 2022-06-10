@@ -27,6 +27,46 @@ public class Solution {
 
 
 注意的地方：
-1. 新建一个array的格式 ： int[] result = new int[k];  k长度的array
+1. 新建一个array的格式 ： int[] result = new int[k];  k长度的array; 注意当创建array时，必须是 new int[0]之类的 []里面不能是空；
 2.    if (right > array.length - 1 || left >= 0 && Math.abs(array[left] - target) <= Math.abs(array[right] - target) ) {
 一定注意先保证左右指针都没有out of bound才可以对比绝对值，这一点一定要铭记在心。
+
+
+
+
+
+第二次code，记录一下
+public class Solution {
+  public int[] kClosest(int[] array, int target, int k) {
+    if (array == null || array.length == 0) {
+      return null;
+    }
+    int left = 0;
+    int right = array.length - 1;
+    int[] result = new int[k]; 
+    while (left < right - 1) {
+      int mid = left + (right - left) /2;
+      if (array[mid] >= target) {
+        right = mid;
+      } else {
+        left = mid;
+      }
+    }
+    for (int i = 0; i < k ; i++) {
+      if (left >= 0 && right < array.length && Math.abs(array[left] - target) > Math.abs(array[right] - target)) {
+        result[i] = array[right];
+        right++;
+      } else if (left >= 0 && right < array.length && Math.abs(array[left] - target) <= Math.abs(array[right] - target)) {
+        result[i] = array[left];
+        left--;
+      } else if (left >= 0) {
+        result[i] = array[left];
+        left--;
+      } else {
+        result[i] = array[right];
+        right++;
+      }
+    }
+    return result;
+  }
+}
